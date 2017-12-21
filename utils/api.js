@@ -24,3 +24,6 @@ export const  getDeckFromStorage = (id) => {
 
 export const addCardToDeckInStorage = (title,card) => {
 }
+
+export const clearDecks = () => AsyncStorage.clear()
+

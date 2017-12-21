@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {View, Text, FlatList, StyleSheet} from 'react-native'
-import { getDecksFromStorage } from '../utils/api'
+import { getDecksFromStorage} from '../utils/api'
 
 import { connect } from 'react-redux'
 import { getDecksFromStore } from '../actions'
@@ -11,10 +11,6 @@ class DeckList extends Component {
         console.log("DeckList componentDidMount")
         getDecksFromStorage().then(decks => this.props.retreiveDecks(decks))
         console.log(this.props.decks)
-    }
-
-    componentWillReceiveProps() {
-        console.log("DeckList componentWillReceiveProps")
     }
 
     renderItem = ({item}) => {
@@ -46,9 +42,10 @@ class DeckList extends Component {
                 <FlatList  
                     data={data}
                     renderItem={this.renderItem}
+                    keyExtractor={(item, index) => index}
                 />
                 :
-                <Text>Create new deck using new deck tab</Text>
+                <Text style={styles.defaultInfo}>Create new deck using new deck tab</Text>
                 }
             </View>
         )
@@ -68,6 +65,11 @@ function mapDispatchToProps(dispatch) {
 }
 
 const styles = StyleSheet.create({
+    defaultInfo: {
+        paddingTop: 30,
+        textAlign: 'center',
+        fontSize: 32,
+    },
     deckTitle : {
         paddingTop: 25,
         paddingBottom: 25,

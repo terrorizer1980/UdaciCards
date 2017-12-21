@@ -9,7 +9,7 @@ import { Provider } from 'react-redux'
 //import devToolsEnhancer from 'remote-redux-devtools'
 import reducer from './reducers'
 
-import { black } from './utils/colors'
+import { black, lightPurple } from './utils/colors'
 import { Constants } from 'expo'
 
 import DeckList from './components/DeckList'
@@ -45,23 +45,23 @@ const Tabs = TabNavigator({
         }
     }
 } , {
-  navigationOptions: {
-    header: null
-  },
-  tabBarOptions: {
-    activeTintColor: '#28b3e5',
-    style: {
-      height: 56,
-      backgroundColor: '#1d272f',
-      shadowColor: 'rgba(0, 0, 0, 0.24)',
-      shadowOffset: {
-        width: 0,
-        height: 3
-      },
-      shadowRadius: 6,
-      shadowOpacity: 1
+    navigationOptions: {
+        header: null
+    },
+    tabBarOptions: {
+        activeTintColor:  lightPurple,
+        style: {
+        height: 56,
+        backgroundColor: black,
+        shadowColor: 'rgba(0, 0, 0, 0.24)',
+        shadowOffset: {
+            width: 0,
+            height: 3
+        },
+        shadowRadius: 6,
+        shadowOpacity: 1
+        }
     }
-  }
 })
 
 const MainNavigator = StackNavigator({

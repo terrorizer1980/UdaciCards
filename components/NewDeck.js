@@ -2,11 +2,10 @@ import React, { Component } from 'react'
 import {View, Text, TextInput,
         TouchableOpacity, StyleSheet, Platform} from 'react-native'
 import { black, white } from '../utils/colors'
-import { saveDeckToStorage } from '../utils/api'
+import { saveDeckToStorage, clearDecks } from '../utils/api'
 
 import { connect } from 'react-redux'
-
-import { addDeckToStore } from '../actions'
+import { addDeckToStore, resetDecks } from '../actions'
 
 class NewDeck extends Component {
 
@@ -30,6 +29,15 @@ class NewDeck extends Component {
         this.setState(() => ({deckTitle: ''}))
     }
 
+    clear = () => {
+        // clear async storage 
+        clearDecks()
+        // update redux
+        this.props.resetDecks()
+        // Navigation to deck list
+        this.props.navigation.navigate('DeckList')
+    }
+
     render() {
         return (
             <View>
@@ -45,6 +53,9 @@ class NewDeck extends Component {
                 <View style={{paddingTop: 10}}>
                     <SubmitBtn onPress={this.submit}/>
                 </View>
+                <View style={{paddingTop: 10}}>
+                    <ClearBtn onPress={this.clear}/>
+                </View>
             </View>
         )
     }
@@ -56,6 +67,16 @@ function SubmitBtn({ onPress }) {
             style={Platform === 'ios'?styles.iosSubmitBtn:styles.AndroidSubmitBtn}
             onPress={onPress}>
             <Text style={styles.submitBtnText}>SUBMIT</Text>
+        </TouchableOpacity>
+    )
+}
+
+function ClearBtn({ onPress }) {
+    return (
+        <TouchableOpacity 
+            style={Platform === 'ios'?styles.iosSubmitBtn:styles.AndroidSubmitBtn}
+            onPress={onPress}>
+            <Text style={styles.submitBtnText}>CLEAR ALL DECKS</Text>
         </TouchableOpacity>
     )
 }
@@ -103,7 +124,8 @@ const styles = StyleSheet.create({
 
 function mapDispatchToProps(dispatch) {
     return {
-        addDeck: (title) => dispatch(addDeckToStore(title))
+        addDeck: (title) => dispatch(addDeckToStore(title)),
+        resetDecks: () => dispatch(resetDecks())
     }
 }
 
