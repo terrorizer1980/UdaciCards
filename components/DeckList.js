@@ -21,6 +21,9 @@ class DeckList extends Component {
                 <Text style={styles.deckTitle}>
                     {item.key}
                 </Text>
+                <Text style={styles.deckCount}>
+                    {item.count} cards
+                </Text>
             </View>
         )
     }
@@ -31,7 +34,10 @@ class DeckList extends Component {
         console.log(this.props.decks)
         var data = {}
         if(decks) {
-            data = Object.keys(decks).map(key => ({key: decks[key].title}))
+            data = Object.keys(decks).map(key => ({
+                key: decks[key].title, 
+                count: decks[key].questions.length
+            }))
         }
         console.log('printing data', data)
         //var data = [{key: 'React'}, {key: 'JavaScript'}]
@@ -72,9 +78,11 @@ const styles = StyleSheet.create({
     },
     deckTitle : {
         paddingTop: 25,
-        paddingBottom: 25,
         borderRadius: 4,
         fontSize:25,
+    },
+    deckCount : {
+        paddingBottom: 25,
     },
     deck: {
         justifyContent:'center',
