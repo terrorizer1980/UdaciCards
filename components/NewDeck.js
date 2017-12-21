@@ -2,19 +2,33 @@ import React, { Component } from 'react'
 import {View, Text, TextInput,
         TouchableOpacity, StyleSheet, Platform} from 'react-native'
 import { purple, white } from '../utils/colors'
+import { saveDeckToStorage } from '../utils/api'
+
+import { connect } from 'react-redux'
+
+import { addDeckToStore } from '../actions'
 
 class NewDeck extends Component {
     state = {
-        deckTitle : "Deck Title"
+        deckTitle : 'Deck Title'
     }
 
     submit = () => {
-        console.log("submit button is clicked with value",this.state.deckTitle)
+        const { deckTitle }  = this.state
+        console.log("submit button is clicked with value",deckTitle)
+        // update redux
+        this.props.dispatch(addDeckToStore(deckTitle)) 
+        // save deck title to async storage
+        saveDeckToStorage(deckTitle)
+        // Navigation to deck list
+        this.props.navigation.navigate('DeckList')
+        // reset title
+        this.setState(() => ({deckTitle: 'Deck Title'}))
     }
 
     render() {
         return (
-            <View>
+            <View style={{flex: 1}}>
                 <Text style={styles.deckQtn}>What is the title of your new deck? </Text>
                 <View style={{paddingTop: 10}}>
                     <TextInput 
@@ -82,4 +96,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default NewDeck
+export default connect()(NewDeck)
