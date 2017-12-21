@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {View, Text, TextInput,
         TouchableOpacity, StyleSheet, Platform} from 'react-native'
-import { purple, white } from '../utils/colors'
+import { black, white } from '../utils/colors'
 import { saveDeckToStorage } from '../utils/api'
 
 import { connect } from 'react-redux'
@@ -9,32 +9,37 @@ import { connect } from 'react-redux'
 import { addDeckToStore } from '../actions'
 
 class NewDeck extends Component {
-    state = {
-        deckTitle : 'Deck Title'
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            deckTitle : ''
+        }
     }
 
     submit = () => {
         const { deckTitle }  = this.state
         console.log("submit button is clicked with value",deckTitle)
         // update redux
-        this.props.dispatch(addDeckToStore(deckTitle)) 
+        this.props.addDeck(deckTitle)
         // save deck title to async storage
         saveDeckToStorage(deckTitle)
         // Navigation to deck list
         this.props.navigation.navigate('DeckList')
         // reset title
-        this.setState(() => ({deckTitle: 'Deck Title'}))
+        this.setState(() => ({deckTitle: ''}))
     }
 
     render() {
         return (
-            <View style={{flex: 1}}>
+            <View>
                 <Text style={styles.deckQtn}>What is the title of your new deck? </Text>
                 <View style={{paddingTop: 10}}>
                     <TextInput 
-                        placeholder={this.state.deckTitle}
+                        placeholder="Deck Title"
                         style={styles.deckTitle}
                         onChangeText={(text) => this.setState({deckTitle: text})}
+                        value={this.state.deckTitle}
                     />
                 </View>
                 <View style={{paddingTop: 10}}>
@@ -64,14 +69,14 @@ const styles = StyleSheet.create({
   deckTitle: {
     height: 40,
     width: 300,
-    borderColor: purple,
+    borderColor: black,
     alignSelf: 'center',
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1
   },
   iosSubmitBtn: {
-    backgroundColor: purple,
+    backgroundColor: black,
     padding: 10,
     borderRadius: 7,
     height: 45,
@@ -79,7 +84,7 @@ const styles = StyleSheet.create({
     marginRight: 40,
   },
   AndroidSubmitBtn: {
-    backgroundColor: purple,
+    backgroundColor: black,
     padding: 10,
     paddingLeft: 30,
     paddingRight: 30,
@@ -96,4 +101,10 @@ const styles = StyleSheet.create({
   },
 })
 
-export default connect()(NewDeck)
+function mapDispatchToProps(dispatch) {
+    return {
+        addDeck: (title) => dispatch(addDeckToStore(title))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(NewDeck)

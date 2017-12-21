@@ -9,7 +9,7 @@ import { Provider } from 'react-redux'
 //import devToolsEnhancer from 'remote-redux-devtools'
 import reducer from './reducers'
 
-import { purple } from './utils/colors'
+import { black } from './utils/colors'
 import { Constants } from 'expo'
 
 import DeckList from './components/DeckList'
@@ -44,6 +44,24 @@ const Tabs = TabNavigator({
             tabBarLabel: 'NEW DECK',
         }
     }
+} , {
+  navigationOptions: {
+    header: null
+  },
+  tabBarOptions: {
+    activeTintColor: '#28b3e5',
+    style: {
+      height: 56,
+      backgroundColor: '#1d272f',
+      shadowColor: 'rgba(0, 0, 0, 0.24)',
+      shadowOffset: {
+        width: 0,
+        height: 3
+      },
+      shadowRadius: 6,
+      shadowOpacity: 1
+    }
+  }
 })
 
 const MainNavigator = StackNavigator({
@@ -57,8 +75,8 @@ export default class App extends React.Component {
     return (
         <Provider store={store}>
             <View style={{flex: 1}}>
-                <CustomStatusBar backgroundColor={purple} barStyle="light-content" />
-                <Tabs />
+                <CustomStatusBar backgroundColor={black} barStyle="light-content" />
+                <MainNavigator />
             </View>
         </Provider>
     )
