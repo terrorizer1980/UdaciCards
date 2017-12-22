@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import {View, Text, FlatList, StyleSheet} from 'react-native'
+import {View, Text, FlatList, StyleSheet, TouchableOpacity} from 'react-native'
 import { getDecksFromStorage} from '../utils/api'
 
 import { connect } from 'react-redux'
-import { getDecksFromStore } from '../actions'
+import { getDecksFromStore, setSelectedDeck } from '../actions'
 
 class DeckList extends Component {
 
@@ -13,18 +13,28 @@ class DeckList extends Component {
         console.log(this.props.decks)
     }
 
+    onDeckTouch = (title) => {
+        const { decks, navigation, setDeck } = this.props
+        // set selected deck to redux
+        console.log("before set deck", decks[title])
+        setDeck(decks[title])
+        // redirect to deck details
+        this.props.navigation.navigate('DeckDetails',{title})
+    }
+
     renderItem = ({item}) => {
         console.log("DeckList renderItem")
         console.log(this.props.decks)
         return ( 
-            <View style={styles.deck}>
+            <TouchableOpacity style={styles.deck} 
+                onPress={() => this.onDeckTouch(item.key)}>
                 <Text style={styles.deckTitle}>
                     {item.key}
                 </Text>
                 <Text style={styles.deckCount}>
                     {item.count} cards
                 </Text>
-            </View>
+            </TouchableOpacity>
         )
     }
 
@@ -66,7 +76,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        retreiveDecks: (decks) => dispatch(getDecksFromStore(decks))
+        retreiveDecks: (decks) => dispatch(getDecksFromStore(decks)),
+        setDeck: (deck) => dispatch(setSelectedDeck(deck))
     }
 }
 

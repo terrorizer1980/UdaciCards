@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, Text, View, StatusBar } from 'react-native';
+import React from 'react'
+import { StyleSheet, Text, View, StatusBar } from 'react-native'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 
 import './utils/ReactotronConfig'
@@ -14,6 +14,7 @@ import { Constants } from 'expo'
 
 import DeckList from './components/DeckList'
 import NewDeck from './components/NewDeck'
+import DeckDetails from './components/DeckDetails'
 
 const store = Reactotron.createStore(
     reducer,
@@ -67,6 +68,9 @@ const Tabs = TabNavigator({
 const MainNavigator = StackNavigator({
     Home: {
         screen: Tabs
+    },
+    DeckDetails: {
+        screen: DeckDetails
     }
 })
 
