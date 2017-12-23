@@ -6,7 +6,7 @@ import './utils/ReactotronConfig'
 import { createStore, applyMiddleware } from 'redux'
 import Reactotron from 'reactotron-react-native'
 import { Provider } from 'react-redux'
-//import devToolsEnhancer from 'remote-redux-devtools'
+import devToolsEnhancer from 'remote-redux-devtools'
 import reducer from './reducers'
 
 import { black, lightPurple } from './utils/colors'
@@ -15,12 +15,15 @@ import { Constants } from 'expo'
 import DeckList from './components/DeckList'
 import NewDeck from './components/NewDeck'
 import DeckDetails from './components/DeckDetails'
+import AddCard from './components/AddCard'
+import Quiz from './components/Quiz'
 
-const store = Reactotron.createStore(
+//const store = Reactotron.createStore(
+const store = createStore(
     reducer,
-    applyMiddleware()
-    //devToolsEnhancer(),
-    //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    //applyMiddleware(),
+    devToolsEnhancer(),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 
 function CustomStatusBar ({backgroundColor, ...props}) {
@@ -71,7 +74,20 @@ const MainNavigator = StackNavigator({
     },
     DeckDetails: {
         screen: DeckDetails
+    },
+    AddCard: {
+        screen: AddCard,
+        navigationOptions: {
+            title: 'Add Card',
+        }
+    },
+    Quiz: {
+        screen: Quiz,
+        navigationOptions: {
+            title: 'Quiz',
+        }
     }
+
 })
 
 export default class App extends React.Component {

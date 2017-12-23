@@ -23,6 +23,18 @@ export const  getDeckFromStorage = (id) => {
 }
 
 export const addCardToDeckInStorage = (title,card) => {
+    getDecksFromStorage().then(
+        decks => {
+            var data = {
+                [title] : {
+                    title,
+                    questions: [...decks[title].questions, card]
+                }
+            }
+            console.log("At add card to deck in storage", data)
+            return AsyncStorage.mergeItem(DECK_STORAGE_KEY, JSON.stringify(data))
+        } 
+    )
 }
 
 export const clearDecks = () => AsyncStorage.clear()

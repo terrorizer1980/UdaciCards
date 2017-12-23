@@ -7,11 +7,20 @@ import { black, white, lightblack } from '../utils/colors'
 
 
 class DeckDetails extends  Component {
+    
     static navigationOptions = ({navigation}) => {
         const { title } = navigation.state.params
         return {
             title  
         }
+    }
+
+    addCard = () => {
+        this.props.navigation.navigate('AddCard')
+    }
+
+    startQuiz = () => {
+        this.props.navigation.navigate('Quiz')
     }
 
     render() {
@@ -23,10 +32,10 @@ class DeckDetails extends  Component {
                 <Text style={styles.deckCount}>{selectedDeck.questions.length} cards</Text>
                 <View style={{paddingTop:90}}>
                     <View style={{paddingTop: 10}}>
-                        <AddCardBtn />
+                        <AddCardBtn onPress={() => this.addCard()}/>
                     </View>
                     <View style={{paddingTop: 10}}>
-                        <StartQuizBtn />
+                        <StartQuizBtn onPress={() => this.startQuiz()}/>
                     </View>
                 </View>
             </View>
@@ -56,7 +65,7 @@ function StartQuizBtn({ onPress }) {
 
 function mapStateToProps(state) {
     return {
-        selectedDeck: state.selectedDeck
+        selectedDeck: state.selectedDeck,
     }
 }
 

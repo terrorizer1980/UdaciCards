@@ -16,5 +16,5 @@ Reactotron
     .use(overlay())
     .use(asyncStorage())
     .use(networking())
-    .use(reactotronRedux())
+    //.use(reactotronRedux())
     .connect()

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {View, Text, FlatList, StyleSheet, TouchableOpacity} from 'react-native'
-import { getDecksFromStorage} from '../utils/api'
+import { getDecksFromStorage, clearDecks} from '../utils/api'
 
 import { connect } from 'react-redux'
 import { getDecksFromStore, setSelectedDeck } from '../actions'
@@ -8,6 +8,7 @@ import { getDecksFromStore, setSelectedDeck } from '../actions'
 class DeckList extends Component {
 
     componentDidMount() {
+        clearDecks()
         console.log("DeckList componentDidMount")
         getDecksFromStorage().then(decks => this.props.retreiveDecks(decks))
         console.log(this.props.decks)
