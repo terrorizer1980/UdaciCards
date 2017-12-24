@@ -27,6 +27,7 @@ class DeckDetails extends  Component {
         console.log(this.props.selectedDeck)
         const { selectedDeck } = this.props
         return (
+        <View style={styles.container}>
             <View style={styles.deck}>
                 <Text style={styles.deckTitle}>{selectedDeck.title}</Text>
                 <Text style={styles.deckCount}>{selectedDeck.questions.length} cards</Text>
@@ -39,6 +40,7 @@ class DeckDetails extends  Component {
                     </View>
                 </View>
             </View>
+        </View>
         )
     }
 }
@@ -70,6 +72,10 @@ function mapStateToProps(state) {
 }
 
 const styles = StyleSheet.create({
+    container : {
+        flex: 1,
+        backgroundColor: white
+    },
     deckTitle : {
         paddingTop: 25,
         borderRadius: 4,
@@ -111,20 +117,26 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     iosAddCardBtn: {
-        backgroundColor: white,
         padding: 10,
         borderRadius: 7,
         height: 45,
+        borderRadius: 2,
+        borderColor: black,
+        borderWidth: 1,
+        alignSelf: 'center',
+        justifyContent: 'center',
+        alignItems: 'center',
         marginLeft: 40,
         marginRight: 40,
     },
     andriodAddCardBtn: {
-        backgroundColor: white,
         padding: 10,
         paddingLeft: 30,
         paddingRight: 30,
         height: 45,
         borderRadius: 2,
+        borderColor: black,
+        borderWidth: 1,
         alignSelf: 'center',
         justifyContent: 'center',
         alignItems: 'center',

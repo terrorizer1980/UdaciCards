@@ -38,7 +38,7 @@ class AddCard extends Component {
 
     render() {
         return (
-            <View>
+            <View style={styles.container}>
                 <View style={{paddingTop: 20}}>
                     <TextInput 
                         placeholder="Enter Question"
@@ -74,6 +74,10 @@ function SubmitBtn({ onPress }) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: white
+  },
   deckQtn: {
     paddingTop: 30,
     textAlign: 'center',

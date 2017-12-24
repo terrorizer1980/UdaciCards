@@ -4,11 +4,12 @@ import { getDecksFromStorage, clearDecks} from '../utils/api'
 
 import { connect } from 'react-redux'
 import { getDecksFromStore, setSelectedDeck } from '../actions'
+import { white } from '../utils/colors'
 
 class DeckList extends Component {
 
     componentDidMount() {
-        clearDecks()
+        //clearDecks()
         console.log("DeckList componentDidMount")
         getDecksFromStorage().then(decks => this.props.retreiveDecks(decks))
         console.log(this.props.decks)
@@ -53,7 +54,7 @@ class DeckList extends Component {
         console.log('printing data', data)
         //var data = [{key: 'React'}, {key: 'JavaScript'}]
         return (
-            <View>
+            <View style={styles.container}>
                 { Object.keys(data).length>0
                 ?
                 <FlatList  
@@ -83,6 +84,10 @@ function mapDispatchToProps(dispatch) {
 }
 
 const styles = StyleSheet.create({
+    container : {
+        flex: 1,
+        backgroundColor: white
+    },
     defaultInfo: {
         paddingTop: 30,
         textAlign: 'center',

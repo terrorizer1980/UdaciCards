@@ -40,7 +40,7 @@ class NewDeck extends Component {
 
     render() {
         return (
-            <View>
+            <View style={styles.container}>
                 <Text style={styles.deckQtn}>What is the title of your new deck? </Text>
                 <View style={{paddingTop: 10}}>
                     <TextInput 
@@ -82,6 +82,10 @@ function ClearBtn({ onPress }) {
 }
 
 const styles = StyleSheet.create({
+  container : {
+    flex: 1,
+    backgroundColor: white
+  },
   deckQtn: {
     paddingTop: 30,
     textAlign: 'center',
