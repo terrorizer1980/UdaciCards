@@ -21,11 +21,12 @@ import Quiz from './components/Quiz'
 //const store = Reactotron.createStore(
 const store = createStore(
     reducer,
-    //applyMiddleware(),
-    devToolsEnhancer(),
+    //applyMiddleware(), Reactron did not work without this
+    devToolsEnhancer(), // custom dev tools
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 
+// status bar
 function CustomStatusBar ({backgroundColor, ...props}) {
     return (
         <View style={{backgroundColor, height: Constants.statusBarHeight}}>
@@ -68,6 +69,7 @@ const Tabs = TabNavigator({
     }
 })
 
+// Main Navigator 
 const MainNavigator = StackNavigator({
     Home: {
         screen: Tabs

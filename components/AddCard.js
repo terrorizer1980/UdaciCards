@@ -25,15 +25,12 @@ class AddCard extends Component {
             question: this.state.question,
             answer: this.state.answer
         }
-        console.log("current card values", card)
         // update redux
         saveCard(card)
-        console.log("After save card ", decks)
         // save to storage
         addCardToDeckInStorage(selectedDeck.title,card)
         // navigate to add card screen
         navigation.goBack()
-        // reset state
     }
 
     render() {

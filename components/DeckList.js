@@ -8,42 +8,32 @@ import { white } from '../utils/colors'
 
 class DeckList extends Component {
 
+    // on Mount load from local storage and add to store
     componentDidMount() {
         //clearDecks()
-        console.log("DeckList componentDidMount")
         getDecksFromStorage().then(decks => this.props.retreiveDecks(decks))
-        console.log(this.props.decks)
     }
 
     onDeckTouch = (title) => {
         const { decks, navigation, setDeck } = this.props
         // set selected deck to redux
-        console.log("before set deck", decks[title])
         setDeck(decks[title])
         // redirect to deck details
         this.props.navigation.navigate('DeckDetails',{title})
     }
 
     renderItem = ({item}) => {
-        console.log("DeckList renderItem")
-        console.log(this.props.decks)
         return ( 
             <TouchableOpacity style={styles.deck} 
                 onPress={() => this.onDeckTouch(item.key)}>
-                <Text style={styles.deckTitle}>
-                    {item.key}
-                </Text>
-                <Text style={styles.deckCount}>
-                    {item.count} cards
-                </Text>
+                <Text style={styles.deckTitle}> {item.key} </Text>
+                <Text style={styles.deckCount}> {item.count} cards </Text>
             </TouchableOpacity>
         )
     }
 
     render() {
         const { decks } = this.props
-        console.log("DeckList render")
-        console.log(this.props.decks)
         var data = {}
         if(decks) {
             data = Object.keys(decks).map(key => ({
@@ -51,8 +41,6 @@ class DeckList extends Component {
                 count: decks[key].questions.length
             }))
         }
-        console.log('printing data', data)
-        //var data = [{key: 'React'}, {key: 'JavaScript'}]
         return (
             <View style={styles.container}>
                 { Object.keys(data).length>0

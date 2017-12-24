@@ -18,7 +18,6 @@ class NewDeck extends Component {
 
     submit = () => {
         const { deckTitle }  = this.state
-        console.log("submit button is clicked with value",deckTitle)
         // update redux
         this.props.addDeck(deckTitle)
         // save deck title to async storage

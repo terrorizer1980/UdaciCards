@@ -40,9 +40,8 @@ class Quiz extends Component {
     }
 
     render() {
-        console.log("In Quiz screen",this.props.cards)
         const { cards } = this.props
-        const { index, viewAnswer } = this.state
+        const { index, viewAnswer, score } = this.state
         return (
             <View style={styles.container}>
                 {(cards.length > 0) ?  
@@ -76,7 +75,9 @@ class Quiz extends Component {
                     </View>
                     :
                     <View style={styles.qtnView}>
-                        <Text style={styles.deckQtn}> Your score is : {this.state.score} </Text>
+                        <Text style={styles.deckQtn}> 
+                            You answered {Math.floor(score/cards.length*100)}% correct
+                        </Text>
                     </View>
                     }
                 </View>

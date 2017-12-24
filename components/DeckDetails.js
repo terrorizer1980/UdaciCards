@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 
 import { black, white, lightblack } from '../utils/colors'
 
-
 class DeckDetails extends  Component {
     
     static navigationOptions = ({navigation}) => {
@@ -24,7 +23,6 @@ class DeckDetails extends  Component {
     }
 
     render() {
-        console.log(this.props.selectedDeck)
         const { selectedDeck } = this.props
         return (
         <View style={styles.container}>
