@@ -1,5 +1,14 @@
 {
   "expo": {
-    "sdkVersion": "23.0.0"
+    "name": "UdaciCards",
+    "slug": "udacicards",
+    "orientation": "portrait",
+    "description": "User can add new cards and take quiz",
+    "sdkVersion": "23.0.0",
+    "version": "1.0",
+    "icon": "./icons/flashcards.png",
+    "android": {
+        "package": "org.udacicards.exp"
+    }
   }
 }
