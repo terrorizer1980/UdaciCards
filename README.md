@@ -12,6 +12,8 @@ UdaciCards Project is for React Native
   * [npm run android](#npm-run-android)
   * [npm run eject](#npm-run-eject)
 * [Demo](#demo)
+* [Expo link for this app](#expo-link-for-this-app)
+* [Andriod apk file download](#andriod-apk-file-download)
 * [Environment Variables](#environment-variables)
   * [Configuring Packager IP Address](#configuring-packager-ip-address)
 * [Sharing and Deployment](#sharing-and-deployment)
@@ -99,6 +101,16 @@ This will start the process of "ejecting" from Create React Native App's build s
 ## Demo
 
 ![Demo](https://github.com/rajashekar/UdaciCards/blob/master/demo/udacicards.gif)
+
+## Expo link for this app
+
+```https://expo.io/@rajashekar/udacicards```
+
+## Andriod apk file download
+
+This project is tested with andriod device - Nexus 6p
+
+```https://exp-shell-app-assets.s3-us-west-1.amazonaws.com/android%2F%40rajashekar%2Fudacicards-35ee0b67-e92d-11e7-98dc-0a580a780706-signed.apk```
 
 ## Environment Variables
 
