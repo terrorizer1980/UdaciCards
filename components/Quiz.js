@@ -39,6 +39,14 @@ class Quiz extends Component {
         }))
     }
 
+    restart = () => {
+        this.props.navigation.navigate('Quiz')
+    }
+
+    back = () => {
+        this.props.navigation.goBack()
+    }
+
     render() {
         const { cards } = this.props
         const { index, viewAnswer, score } = this.state
@@ -78,6 +86,14 @@ class Quiz extends Component {
                         <Text style={styles.deckQtn}> 
                             You answered {Math.floor(score/cards.length*100)}% correct
                         </Text>
+                        <View style={{paddingTop: 120}}>
+                            <View style={{paddingTop: 10}}>
+                                <RestartQuizBtn onPress={() => this.restart()}/>
+                            </View>
+                            <View style={{paddingTop: 10}}>
+                                <BackToDeckBtn onPress={() => this.back()}/>
+                            </View>
+                        </View>
                     </View>
                     }
                 </View>
@@ -107,6 +123,26 @@ function IncorrectBtn({ onPress }) {
             style={Platform === 'ios'?styles.iosIncorrectBtn:styles.andriodIncorrectBtn}
             onPress={onPress}>
             <Text style={styles.incorrectBtnText}>Incorrect</Text>
+        </TouchableOpacity>
+    )
+}
+
+function RestartQuizBtn({ onPress }) {
+    return (
+        <TouchableOpacity 
+            style={Platform === 'ios'?styles.iosBtn:styles.andriodBtn}
+            onPress={onPress}>
+            <Text style={styles.btnText}>Restart Quiz</Text>
+        </TouchableOpacity>
+    )
+}
+
+function BackToDeckBtn({ onPress }) {
+    return (
+        <TouchableOpacity 
+            style={Platform === 'ios'?styles.iosBtn:styles.andriodBtn}
+            onPress={onPress}>
+            <Text style={styles.btnText}>Back to Deck</Text>
         </TouchableOpacity>
     )
 }
@@ -185,6 +221,30 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     incorrectBtnText: {
+        color: white,
+        fontSize: 22,
+        textAlign: 'center',
+    },
+    iosBtn: {
+        backgroundColor: black,
+        padding: 10,
+        borderRadius: 7,
+        height: 45,
+        marginLeft: 40,
+        marginRight: 40,
+    },
+    andriodBtn: {
+        backgroundColor: black,
+        padding: 10,
+        paddingLeft: 30,
+        paddingRight: 30,
+        height: 45,
+        borderRadius: 2,
+        alignSelf: 'center',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    btnText: {
         color: white,
         fontSize: 22,
         textAlign: 'center',

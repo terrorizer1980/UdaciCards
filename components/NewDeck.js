@@ -5,28 +5,31 @@ import { black, white } from '../utils/colors'
 import { saveDeckToStorage, clearDecks } from '../utils/api'
 
 import { connect } from 'react-redux'
-import { addDeckToStore, resetDecks } from '../actions'
+import { addDeckToStore, resetDecks, setSelectedDeck } from '../actions'
 
 class NewDeck extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            deckTitle : ''
+            title : ''
         }
     }
 
     submit = () => {
-        const { deckTitle }  = this.state
-        if(deckTitle.length>0) {
+        const { title }  = this.state
+        const { addDeck, setDeck, navigation } = this.props
+        if(title.length>0) {
             // update redux
-            this.props.addDeck(deckTitle)
+            addDeck(title)
             // save deck title to async storage
-            saveDeckToStorage(deckTitle)
+            saveDeckToStorage(title)
+            // set selected deck to redux
+            setDeck({title, questions: []})
             // Navigation to deck list
-            this.props.navigation.navigate('DeckList')
+            navigation.navigate('DeckDetails',{title})
             // reset title
-            this.setState(() => ({deckTitle: ''}))
+            this.setState(() => ({title: ''}))
         }
     }
 
@@ -47,8 +50,8 @@ class NewDeck extends Component {
                     <TextInput 
                         placeholder="Deck Title"
                         style={styles.deckTitle}
-                        onChangeText={(text) => this.setState({deckTitle: text})}
-                        value={this.state.deckTitle}
+                        onChangeText={(text) => this.setState({title: text})}
+                        value={this.state.title}
                     />
                 </View>
                 <View style={{paddingTop: 10}}>
@@ -130,7 +133,8 @@ const styles = StyleSheet.create({
 function mapDispatchToProps(dispatch) {
     return {
         addDeck: (title) => dispatch(addDeckToStore(title)),
-        resetDecks: () => dispatch(resetDecks())
+        resetDecks: () => dispatch(resetDecks()),
+        setDeck: (deck) => dispatch(setSelectedDeck(deck))
     }
 }
 
