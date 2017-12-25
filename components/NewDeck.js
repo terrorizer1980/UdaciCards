@@ -18,14 +18,16 @@ class NewDeck extends Component {
 
     submit = () => {
         const { deckTitle }  = this.state
-        // update redux
-        this.props.addDeck(deckTitle)
-        // save deck title to async storage
-        saveDeckToStorage(deckTitle)
-        // Navigation to deck list
-        this.props.navigation.navigate('DeckList')
-        // reset title
-        this.setState(() => ({deckTitle: ''}))
+        if(deckTitle.length>0) {
+            // update redux
+            this.props.addDeck(deckTitle)
+            // save deck title to async storage
+            saveDeckToStorage(deckTitle)
+            // Navigation to deck list
+            this.props.navigation.navigate('DeckList')
+            // reset title
+            this.setState(() => ({deckTitle: ''}))
+        }
     }
 
     clear = () => {

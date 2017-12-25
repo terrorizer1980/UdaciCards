@@ -21,16 +21,16 @@ class AddCard extends Component {
 
     submit = () => {
         const { saveCard, decks, selectedDeck, navigation} = this.props
-        const card = {
-            question: this.state.question,
-            answer: this.state.answer
+        const { question, answer } = this.state
+        if(question.length>0 && answer.length>0) {
+            const card = { question, answer }
+            // update redux
+            saveCard(card)
+            // save to storage
+            addCardToDeckInStorage(selectedDeck.title,card)
+            // navigate to add card screen
+            navigation.goBack()
         }
-        // update redux
-        saveCard(card)
-        // save to storage
-        addCardToDeckInStorage(selectedDeck.title,card)
-        // navigate to add card screen
-        navigation.goBack()
     }
 
     render() {
@@ -81,10 +81,9 @@ const styles = StyleSheet.create({
     fontSize: 52,
   },
   title: {
+    alignSelf: 'stretch',
     height: 40,
-    width: 400,
     borderColor: black,
-    alignSelf: 'center',
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1
