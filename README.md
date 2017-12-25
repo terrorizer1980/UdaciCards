@@ -1,17 +1,17 @@
 UdaciCards Project is for React Native
 
-
-
 ## Table of Contents
 
 * [Installation steps](#installation-steps)
 * [Execution steps](#execution-steps)
+  * [Run with custom debbuger](#run-with-custom-debbuger) 
 * [Available Scripts](#available-scripts)
   * [npm start](#npm-start)
   * [npm test](#npm-test)
   * [npm run ios](#npm-run-ios)
   * [npm run android](#npm-run-android)
   * [npm run eject](#npm-run-eject)
+* [Demo](#demo)
 * [Environment Variables](#environment-variables)
   * [Configuring Packager IP Address](#configuring-packager-ip-address)
 * [Sharing and Deployment](#sharing-and-deployment)
@@ -37,7 +37,7 @@ npm start
 yarn start 
 ```
 
-## Run with custom debbuger 
+### Run with custom debbuger 
 ```
 REACT_DEBUGGER="unset ELECTRON_RUN_AS_NODE && open -g 'rndebugger://set-debugger-loc?port=19001' ||" npm start 
 ```
@@ -95,6 +95,10 @@ Like `npm start`, but also attempts to open your app on a connected Android devi
 This will start the process of "ejecting" from Create React Native App's build scripts. You'll be asked a couple of questions about how you'd like to build your project.
 
 **Warning:** Running eject is a permanent action (aside from whatever version control system you use). An ejected app will require you to have an [Xcode and/or Android Studio environment](https://facebook.github.io/react-native/docs/getting-started.html) set up.
+
+## Demo
+
+![Demo](https://github.com/rajashekar/UdaciCards/blob/master/demo/udacicards.gif)
 
 ## Environment Variables
 
