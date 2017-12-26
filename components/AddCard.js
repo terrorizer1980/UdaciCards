@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {View, Text, TextInput,
-        TouchableOpacity, Platform } from 'react-native'
+        TouchableOpacity, Platform, Alert } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 
 import { connect } from 'react-redux'
@@ -30,6 +30,13 @@ class AddCard extends Component {
             addCardToDeckInStorage(selectedDeck.title,card)
             // navigate to add card screen
             navigation.goBack()
+        } else {
+            Alert.alert(
+                'Attention',
+                'Please enter question and answer to continue',
+                [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+                { cancelable: false }
+            )
         }
     }
 

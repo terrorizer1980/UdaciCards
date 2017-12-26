@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {View, Text, TextInput,
-        TouchableOpacity,  Platform} from 'react-native'
+        TouchableOpacity,  Platform, Alert} from 'react-native'
 import { saveDeckToStorage, clearDecks } from '../utils/api'
 import { styles } from '../utils/styles'
 
@@ -30,6 +30,13 @@ class NewDeck extends Component {
             navigation.navigate('DeckDetails',{title})
             // reset title
             this.setState(() => ({title: ''}))
+        } else {
+            Alert.alert(
+                'Attention',
+                'Please enter title to continue',
+                [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+                { cancelable: false }
+            )
         }
     }
 
