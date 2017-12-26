@@ -40,12 +40,12 @@ class Quiz extends Component {
     }
 
     restart = () => {
+        this.setState({ index:0, viewAnswer: 0, score:0 })
         this.props.navigation.navigate('Quiz')
     }
 
     back = () => {
-        const { navigation, selectedDeck} = this.props
-        navigation.navigate('DeckDetails',{title: selectedDeck.title})
+        this.props.navigation.goBack()
     }
 
     render() {
