@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { StyleSheet, Text, View, StatusBar } from 'react-native'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 
@@ -92,7 +92,8 @@ const MainNavigator = StackNavigator({
 
 })
 
-export default class App extends React.Component {
+class App extends Component {
+
   render() {
     return (
         <Provider store={store}>
@@ -104,3 +105,5 @@ export default class App extends React.Component {
     )
   }
 }
+
+export default App

@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import {View, Text, FlatList, StyleSheet, TouchableOpacity} from 'react-native'
-import { getDecksFromStorage, clearDecks} from '../utils/api'
+import { getDecksFromStorage, 
+         clearDecks,
+         clearLocalNotification, 
+         setLocalNotification } from '../utils/api'
 
 import { connect } from 'react-redux'
 import { getDecksFromStore, setSelectedDeck } from '../actions'
@@ -12,6 +15,8 @@ class DeckList extends Component {
     componentDidMount() {
         //clearDecks()
         getDecksFromStorage().then(decks => this.props.retreiveDecks(decks))
+        // notification
+        clearLocalNotification().then(setLocalNotification)
     }
 
     onDeckTouch = (title) => {

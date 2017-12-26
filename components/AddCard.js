@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {View, Text, TextInput,
-        TouchableOpacity, StyleSheet, Platform} from 'react-native'
+        TouchableOpacity, StyleSheet, Platform } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 import { black, white } from '../utils/colors'
 

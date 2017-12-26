@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native'
+import { View, Text, StyleSheet, 
+         TouchableOpacity, Platform, Keyboard } from 'react-native'
 
 import { connect } from 'react-redux'
 
 import { black, white, lightblack } from '../utils/colors'
 
 class DeckDetails extends  Component {
+    
+    componentDidMount() {
+        // Hide that keyboard!
+        Keyboard.dismiss()
+    }
     
     static navigationOptions = ({navigation}) => {
         const { title } = navigation.state.params
