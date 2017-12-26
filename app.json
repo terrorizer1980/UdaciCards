@@ -7,6 +7,12 @@
     "sdkVersion": "23.0.0",
     "version": "1.0",
     "icon": "./icons/flashcards.png",
+    "notification": {
+        "icon": "./icons/flashcards-45.png"
+    },
+    "ios": {
+        "bundleIdentifier": "org.udacifitness.exp"
+    },
     "android": {
         "package": "org.udacicards.exp"
     }

@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, 
-         TouchableOpacity, Platform, Keyboard } from 'react-native'
+import { View, Text, TouchableOpacity, Platform, Keyboard } from 'react-native'
 
 import { connect } from 'react-redux'
 
-import { black, white, lightblack } from '../utils/colors'
+import { styles } from '../utils/styles'
 
 class DeckDetails extends  Component {
     
@@ -32,9 +31,9 @@ class DeckDetails extends  Component {
         const { selectedDeck } = this.props
         return (
         <View style={styles.container}>
-            <View style={styles.deck}>
-                <Text style={styles.deckTitle}>{selectedDeck.title}</Text>
-                <Text style={styles.deckCount}>{selectedDeck.questions.length} cards</Text>
+            <View style={styles.deckDetail}>
+                <Text style={styles.deckDetailTitle}>{selectedDeck.title}</Text>
+                <Text style={styles.deckDetailCount}>{selectedDeck.questions.length} cards</Text>
                 <View style={{paddingTop:90}}>
                     <View style={{paddingTop: 10}}>
                         <AddCardBtn onPress={() => this.addCard()}/>
@@ -74,82 +73,5 @@ function mapStateToProps(state) {
         selectedDeck: state.selectedDeck,
     }
 }
-
-const styles = StyleSheet.create({
-    container : {
-        flex: 1,
-        backgroundColor: white
-    },
-    deckTitle : {
-        paddingTop: 25,
-        borderRadius: 4,
-        fontSize:35,
-    },
-    deckCount : {
-        paddingBottom: 25,
-        fontSize:25,
-        color: lightblack
-     },
-    deck: {
-        paddingTop: 95,
-        justifyContent: 'center',
-        alignItems: 'center',
-        alignSelf: 'center'
-    },
-    iosQuizBtn: {
-        backgroundColor: black,
-        padding: 10,
-        borderRadius: 7,
-        height: 45,
-        marginLeft: 40,
-        marginRight: 40,
-    },
-    andriodQuizBtn: {
-        backgroundColor: black,
-        padding: 10,
-        paddingLeft: 30,
-        paddingRight: 30,
-        height: 45,
-        borderRadius: 2,
-        alignSelf: 'center',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    quizBtnText: {
-        color: white,
-        fontSize: 22,
-        textAlign: 'center',
-    },
-    iosAddCardBtn: {
-        padding: 10,
-        borderRadius: 7,
-        height: 45,
-        borderRadius: 2,
-        borderColor: black,
-        borderWidth: 1,
-        alignSelf: 'center',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginLeft: 40,
-        marginRight: 40,
-    },
-    andriodAddCardBtn: {
-        padding: 10,
-        paddingLeft: 30,
-        paddingRight: 30,
-        height: 45,
-        borderRadius: 2,
-        borderColor: black,
-        borderWidth: 1,
-        alignSelf: 'center',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    addCardBtnText: {
-        color: black,
-        fontSize: 22,
-        textAlign: 'center',
-    },
-})
 
 export default connect(mapStateToProps, null)(DeckDetails)

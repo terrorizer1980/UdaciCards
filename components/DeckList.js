@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {View, Text, FlatList, StyleSheet, TouchableOpacity} from 'react-native'
+import {View, Text, FlatList, TouchableOpacity} from 'react-native'
 import { getDecksFromStorage, 
          clearDecks,
          clearLocalNotification, 
@@ -7,7 +7,7 @@ import { getDecksFromStorage,
 
 import { connect } from 'react-redux'
 import { getDecksFromStore, setSelectedDeck } from '../actions'
-import { white } from '../utils/colors'
+import { styles } from '../utils/styles'
 
 class DeckList extends Component {
 
@@ -75,31 +75,5 @@ function mapDispatchToProps(dispatch) {
         setDeck: (deck) => dispatch(setSelectedDeck(deck))
     }
 }
-
-const styles = StyleSheet.create({
-    container : {
-        flex: 1,
-        backgroundColor: white
-    },
-    defaultInfo: {
-        paddingTop: 30,
-        textAlign: 'center',
-        fontSize: 32,
-    },
-    deckTitle : {
-        paddingTop: 25,
-        borderRadius: 4,
-        fontSize:25,
-    },
-    deckCount : {
-        paddingBottom: 25,
-    },
-    deck: {
-        justifyContent:'center',
-        alignItems:'center', 
-        borderBottomColor: 'black',
-        borderBottomWidth: 1,
-    }
-})
 
 export default connect(mapStateToProps,mapDispatchToProps)(DeckList)

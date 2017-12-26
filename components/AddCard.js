@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import {View, Text, TextInput,
-        TouchableOpacity, StyleSheet, Platform } from 'react-native'
+        TouchableOpacity, Platform } from 'react-native'
 import { NavigationActions } from 'react-navigation'
-import { black, white } from '../utils/colors'
 
 import { connect } from 'react-redux'
 
 import { addCard } from '../actions'
 import { addCardToDeckInStorage } from '../utils/api'
+import { styles } from '../utils/styles'
 
 class AddCard extends Component {
 
@@ -69,50 +69,6 @@ function SubmitBtn({ onPress }) {
         </TouchableOpacity>
     )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: white
-  },
-  deckQtn: {
-    paddingTop: 30,
-    textAlign: 'center',
-    fontSize: 52,
-  },
-  title: {
-    alignSelf: 'stretch',
-    height: 40,
-    borderColor: black,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 1
-  },
-  iosSubmitBtn: {
-    backgroundColor: black,
-    padding: 10,
-    borderRadius: 7,
-    height: 45,
-    marginLeft: 40,
-    marginRight: 40,
-  },
-  AndroidSubmitBtn: {
-    backgroundColor: black,
-    padding: 10,
-    paddingLeft: 30,
-    paddingRight: 30,
-    height: 45,
-    borderRadius: 2,
-    alignSelf: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  submitBtnText: {
-    color: white,
-    fontSize: 22,
-    textAlign: 'center',
-  },
-})
 
 function mapStateToProps(state) {
     return {

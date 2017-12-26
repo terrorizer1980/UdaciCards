@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import {View, Text, TextInput,
-        TouchableOpacity, StyleSheet, Platform} from 'react-native'
-import { black, white } from '../utils/colors'
+        TouchableOpacity,  Platform} from 'react-native'
 import { saveDeckToStorage, clearDecks } from '../utils/api'
+import { styles } from '../utils/styles'
 
 import { connect } from 'react-redux'
 import { addDeckToStore, resetDecks, setSelectedDeck } from '../actions'
@@ -49,7 +49,7 @@ class NewDeck extends Component {
                 <View style={{paddingTop: 10}}>
                     <TextInput 
                         placeholder="Deck Title"
-                        style={styles.deckTitle}
+                        style={styles.newDeckTitle}
                         onChangeText={(text) => this.setState({title: text})}
                         value={this.state.title}
                     />
@@ -84,51 +84,6 @@ function ClearBtn({ onPress }) {
         </TouchableOpacity>
     )
 }
-
-const styles = StyleSheet.create({
-  container : {
-    flex: 1,
-    backgroundColor: white
-  },
-  deckQtn: {
-    paddingTop: 30,
-    textAlign: 'center',
-    fontSize: 52,
-  },
-  deckTitle: {
-    height: 40,
-    width: 300,
-    borderColor: black,
-    alignSelf: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 1
-  },
-  iosSubmitBtn: {
-    backgroundColor: black,
-    padding: 10,
-    borderRadius: 7,
-    height: 45,
-    marginLeft: 40,
-    marginRight: 40,
-  },
-  AndroidSubmitBtn: {
-    backgroundColor: black,
-    padding: 10,
-    paddingLeft: 30,
-    paddingRight: 30,
-    height: 45,
-    borderRadius: 2,
-    alignSelf: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  submitBtnText: {
-    color: white,
-    fontSize: 22,
-    textAlign: 'center',
-  },
-})
 
 function mapDispatchToProps(dispatch) {
     return {

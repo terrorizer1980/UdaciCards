@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import {View, Text, StyleSheet, TouchableOpacity, Platform} from 'react-native'
+import {View, Text, TouchableOpacity, Platform} from 'react-native'
 import FlipCard from 'react-native-flip-card'
 
 import { connect } from 'react-redux'
 
-import { red, white, black, green } from '../utils/colors'
+import { styles } from '../utils/styles'
 
 class Quiz extends Component {
 
@@ -44,7 +44,8 @@ class Quiz extends Component {
     }
 
     back = () => {
-        this.props.navigation.goBack()
+        const { navigation, selectedDeck} = this.props
+        navigation.navigate('DeckDetails',{title: selectedDeck.title})
     }
 
     render() {
@@ -56,17 +57,17 @@ class Quiz extends Component {
                     <View>
                     {(index < cards.length) ? 
                     <View>
-                        <Text style={styles.deckCount}>{index+1}/{cards.length}</Text>
+                        <Text style={styles.quizDeckCount}>{index+1}/{cards.length}</Text>
                         { !viewAnswer? 
                             <View style={styles.qtnView}>
-                                <Text style={styles.deckQtn}>{cards[index].question}</Text>
+                                <Text style={styles.quizQtn}>{cards[index].question}</Text>
                                 <TouchableOpacity onPress={()=>this.flip()}>
                                     <Text style={styles.answer}>Answer</Text>
                                 </TouchableOpacity>
                             </View>
                         :
                             <View style={styles.qtnView}>
-                                <Text style={styles.deckQtn}>{cards[index].answer}</Text>
+                                <Text style={styles.quizQtn}>{cards[index].answer}</Text>
                                 <TouchableOpacity onPress={()=>this.flip()}>
                                     <Text style={styles.answer}>Question</Text>
                                 </TouchableOpacity>
@@ -83,7 +84,7 @@ class Quiz extends Component {
                     </View>
                     :
                     <View style={styles.qtnView}>
-                        <Text style={styles.deckQtn}> 
+                        <Text style={styles.quizQtn}> 
                             You answered {Math.floor(score/cards.length*100)}% correct
                         </Text>
                         <View style={{paddingTop: 120}}>
@@ -99,7 +100,7 @@ class Quiz extends Component {
                 </View>
                 :
                 <View style={styles.qtnView}>
-                    <Text style={styles.deckQtn}> No cards added Yet.</Text>
+                    <Text style={styles.quizQtn}> No cards added Yet.</Text>
                 </View>
                 }
             </View>
@@ -130,9 +131,9 @@ function IncorrectBtn({ onPress }) {
 function RestartQuizBtn({ onPress }) {
     return (
         <TouchableOpacity 
-            style={Platform === 'ios'?styles.iosBtn:styles.andriodBtn}
+            style={Platform === 'ios'?styles.iosSubmitBtn:styles.AndroidSubmitBtn}
             onPress={onPress}>
-            <Text style={styles.btnText}>Restart Quiz</Text>
+            <Text style={styles.submitBtnText}>Restart Quiz</Text>
         </TouchableOpacity>
     )
 }
@@ -140,116 +141,12 @@ function RestartQuizBtn({ onPress }) {
 function BackToDeckBtn({ onPress }) {
     return (
         <TouchableOpacity 
-            style={Platform === 'ios'?styles.iosBtn:styles.andriodBtn}
+            style={Platform === 'ios'?styles.iosSubmitBtn:styles.AndroidSubmitBtn}
             onPress={onPress}>
-            <Text style={styles.btnText}>Back to Deck</Text>
+            <Text style={styles.submitBtnText}>Back to Deck</Text>
         </TouchableOpacity>
     )
 }
-
-const styles = StyleSheet.create({
-    container : {
-        flex: 1,
-        backgroundColor: white
-    },
-    qtnView : {
-        paddingTop: 125,
-        paddingLeft: 10,
-        paddingRight: 10,
-        justifyContent: 'center',
-        alignItems: 'center',
-        alignSelf: 'center'
-    },
-    deckQtn : {
-        fontSize: 35,
-        borderRadius: 4,
-        textAlign: 'center', 
-        fontWeight: '600',
-    },
-    deckCount : {
-        fontSize:25,
-        color: black
-     },
-    answer : {
-        color: red,
-        fontSize: 20,
-        justifyContent: 'center',
-        alignItems: 'center',
-        alignSelf: 'center'
-    },
-    iosCorrectBtn: {
-        backgroundColor: green,
-        padding: 10,
-        borderRadius: 7,
-        height: 45,
-        marginLeft: 40,
-        marginRight: 40,
-    },
-    andriodCorrectBtn: {
-        backgroundColor: green,
-        padding: 10,
-        paddingLeft: 30,
-        paddingRight: 30,
-        height: 45,
-        borderRadius: 2,
-        alignSelf: 'center',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    correctBtnText: {
-        color: white,
-        fontSize: 22,
-        textAlign: 'center',
-    },
-    iosIncorrectBtn: {
-        backgroundColor: red,
-        padding: 10,
-        borderRadius: 7,
-        height: 45,
-        marginLeft: 40,
-        marginRight: 40,
-    },
-    andriodIncorrectBtn: {
-        backgroundColor: red,
-        padding: 10,
-        paddingLeft: 30,
-        paddingRight: 30,
-        height: 45,
-        borderRadius: 2,
-        alignSelf: 'center',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    incorrectBtnText: {
-        color: white,
-        fontSize: 22,
-        textAlign: 'center',
-    },
-    iosBtn: {
-        backgroundColor: black,
-        padding: 10,
-        borderRadius: 7,
-        height: 45,
-        marginLeft: 40,
-        marginRight: 40,
-    },
-    andriodBtn: {
-        backgroundColor: black,
-        padding: 10,
-        paddingLeft: 30,
-        paddingRight: 30,
-        height: 45,
-        borderRadius: 2,
-        alignSelf: 'center',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    btnText: {
-        color: white,
-        fontSize: 22,
-        textAlign: 'center',
-    },
-})
 
 function mapStateToProps(state) {
     return {

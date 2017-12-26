@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, StatusBar } from 'react-native'
+import { Text, View, StatusBar } from 'react-native'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 
 import './utils/ReactotronConfig'
