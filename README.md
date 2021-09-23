@@ -1,4 +1,5 @@
-UdaciCards Project is for React Native
+# FlashCards
+FlashCards Mobile App built using React Native. 
 
 ## Table of Contents
 
